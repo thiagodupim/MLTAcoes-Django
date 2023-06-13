@@ -15,10 +15,11 @@
         <input class="form-control me-2" type="text" id="search" name="search" placeholder="Buscar..." aria-label="Search">
         <button class="btn btn-outline-success" type="submit">Buscar</button>
     </form>
-
-    <div class="col-8 m-auto pt-3 pb-2 text-center">
-        <a href="/form" class="btn btn-success">Adicionar Ação</a>
-    </div>
+    {% if perms.admin %}
+        <div class="col-8 m-auto pt-3 pb-2 text-center">
+            <a href="/form" class="btn btn-success">Adicionar Ação</a>
+        </div>
+    {% endif %}
 
     <div class="col-10 m-auto pt-3 pb-2 text-center">
         <table class="table">
@@ -50,8 +51,12 @@
                 <td>{{ dbs.volume }}</td>
                 <td>
                     <a href="/view/{{dbs.id}}/" class="btn btn-dark">Visualizar</a>
-                    <a href="/edit/{{dbs.id}}/" class="btn btn-primary">Editar</a>
-                    <a href="/delete/{{dbs.id}}/" class="btn btn-danger btnDel">Deletar</a>
+                    {% if perms.admin %}
+                        <a href="/edit/{{dbs.id}}/" class="btn btn-primary">Editar</a>
+                        <a href="/delete/{{dbs.id}}/" class="btn btn-danger btnDel">Deletar</a>
+                    {% else %}
+                        <a href="#" class="btn btn-success">Adquirir Ação</a>
+                    {% endif %}
                 </td>
             </tr>
             {% endfor %}

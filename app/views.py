@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from app.forms import AcoesForm
 from app.models import Acoes
 from django.core.paginator import Paginator
+from django.contrib.auth.models import User
+from rolepermissions.roles import assign_role
 
 
 # Create your views here.

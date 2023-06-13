@@ -7,32 +7,36 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
   </head>
   <body>
-    <div class="col-8 m-auto pt-2 pb-2 text-center">
-        <h1>Cadastro</h1>
-    </div>
+    {% if perms.admin %}
+      <div class="col-8 m-auto pt-2 pb-2 text-center">
+          <h1>Cadastro</h1>
+      </div>
 
-    <div class="col-8 m-auto pt-4 pb-2 text-center">
+      <div class="col-8 m-auto pt-4 pb-2 text-center">
 
-        <div id="result"></div>
+          <div id="result"></div>
 
-        <form name="form" id="form" action="{% if db %}/update/{{ db.id }}/{% else %}/create/{% endif %}" method="post">
-            {% csrf_token %}
-            <!-- {{form.as_p}} -->
-            <div class="form-group mt-4">Código: {{form.codigo}}</div>
-            <div class="form-group mt-4">Descrição: {{form.descricao}}</div>
-            <div class="form-group mt-4">Data: {{form.data}}</div>
-            <div class="form-group mt-4">Open: {{form.open}}</div>
-            <div class="form-group mt-4">Close: {{form.close}}</div>
-            <div class="form-group mt-4">High: {{form.high}}</div>
-            <div class="form-group mt-4">Low: {{form.low}}</div>
-            <div class="form-group mt-4">Volume: {{form.volume}}</div>
-            <input type="submit" class="mt-2 btn btn-success" value="Salvar">
-        </form>
-    </div>
+          <form name="form" id="form" action="{% if db %}/update/{{ db.id }}/{% else %}/create/{% endif %}" method="post">
+              {% csrf_token %}
+              <!-- {{form.as_p}} -->
+              <div class="form-group mt-4">Código: {{form.codigo}}</div>
+              <div class="form-group mt-4">Descrição: {{form.descricao}}</div>
+              <div class="form-group mt-4">Data: {{form.data}}</div>
+              <div class="form-group mt-4">Open: {{form.open}}</div>
+              <div class="form-group mt-4">Close: {{form.close}}</div>
+              <div class="form-group mt-4">High: {{form.high}}</div>
+              <div class="form-group mt-4">Low: {{form.low}}</div>
+              <div class="form-group mt-4">Volume: {{form.volume}}</div>
+              <input type="submit" class="mt-2 btn btn-success" value="Salvar">
+          </form>
+      </div>
 
-    <div class="col-8 m-auto pt-3 pb-2 text-center">
-        <a href="/" class="btn btn-info">Voltar</a>
-    </div>
+      <div class="col-8 m-auto pt-3 pb-2 text-center">
+          <a href="/" class="btn btn-info">Voltar</a>
+      </div>
+    {% else %}
+      <div>Você não tem acesso a essa página!</div>
+    {% endif %}
 
     {% load static %}
     <script src="{%static 'javascript.js' %}"></script>
