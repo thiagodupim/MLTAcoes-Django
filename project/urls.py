@@ -16,6 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.urls import re_path 
 from app.views import home, form, create, view, edit, update, delete
 
 from rest_framework import routers
@@ -37,5 +38,6 @@ urlpatterns = [
     path('delete/<int:pk>/', delete, name='delete'),
     path('', include(route.urls)),
     path('accounts/', include('allauth.urls')),
+    re_path(r'^', include('app.urls')),
 ]
 
