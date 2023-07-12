@@ -86,7 +86,7 @@ def app_list(request):
         count = Acoes.objects.all().delete()
         return JsonResponse({'message': '{} Tutorials were deleted successfully!'.format(count[0])}, status=status.HTTP_204_NO_CONTENT)
 
-@api_view(['GET', 'POST', 'DELETE'])
+@api_view(['GET', 'PUT', 'DELETE'])
 def app_detail(request, pk):
     try:
         app = Acoes.objects.get(pk=pk)
